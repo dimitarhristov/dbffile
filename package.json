@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yortus/DBFFile.git"
+    "url": "https://github.com/dimitarhristov/DBFFile.git"
   },
   "keywords": [
     "dbf",
@@ -33,7 +33,7 @@
   "bugs": {
     "url": "https://github.com/yortus/DBFFile/issues"
   },
-  "homepage": "https://github.com/yortus/DBFFile",
+  "homepage": "https://github.com/dimitarhristov/DBFFile.git",
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.7",
@@ -47,5 +47,8 @@
   },
   "dependencies": {
     "iconv-lite": "^0.4.24"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

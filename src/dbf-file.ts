@@ -38,8 +38,8 @@ export class DBFFile {
   fields = [] as FieldDescriptor[];
 
   /** Reads a subset of records from this DBF file. */
-  readRecords(maxCount = 10000000) {
-    return readRecordsFromDBF(this, maxCount);
+  readRecords(maxCount = 10000000, startPos = 0) {
+    return readRecordsFromDBF(this, maxCount, startPos);
   }
 
   /** Appends the specified records to this DBF file. */
@@ -218,9 +218,16 @@ async function createDBF(
 }
 
 // Private implementation of DBFFile#readRecords
-async function readRecordsFromDBF(dbf: DBFFile, maxCount: number) {
+async function readRecordsFromDBF(
+  dbf: DBFFile,
+  maxCount: number,
+  startPos: number
+) {
   let fd = 0;
   let memoFd = 0;
+
+  !!startPos ? (dbf._recordsRead = startPos) : undefined;
+
   try {
     // Open the file and prepare to create a buffer to read through.
     fd = await open(dbf.path, "r");
