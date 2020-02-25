@@ -230,7 +230,7 @@ async function readRecordsFromDBF(
   let fd = 0;
   let memoFd = 0;
 
-  !!startPos ? (dbf._recordsRead = startPos) : undefined;
+  dbf._recordsRead = startPos || dbf._recordsRead;
 
   try {
     // Open the file and prepare to create a buffer to read through.
