@@ -189,7 +189,7 @@ async function createDBF(path, fields, options) {
 async function readRecordsFromDBF(dbf, maxCount, startPos) {
     let fd = 0;
     let memoFd = 0;
-    !!startPos ? (dbf._recordsRead = startPos) : undefined;
+    dbf._recordsRead = startPos || dbf._recordsRead;
     try {
         // Open the file and prepare to create a buffer to read through.
         fd = await utils_1.open(dbf.path, "r");

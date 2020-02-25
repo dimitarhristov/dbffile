@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import * as fs from 'fs';
 /** Promisified version of fs.close. */
 export declare const close: typeof fs.close.__promisify__;
