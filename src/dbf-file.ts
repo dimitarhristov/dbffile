@@ -11,6 +11,7 @@ import {
   parseVfpDateTime,
   parse8CharDate
 } from "./utils";
+const fs = require("fs");
 
 /** Represents a DBF file. */
 export class DBFFile {
@@ -82,11 +83,14 @@ async function openDBF(path: string, options: Options): Promise<DBFFile> {
     } else if (fileVersion === 0x30) {
       memoPath = path.slice(0, -extname(path).length) + ".fpt";
     }
+
     if (options.fileVersion && fileVersion !== options.fileVersion) {
       throw new Error(
         `File '${path}: expected version ${options.fileVersion} but found ${fileVersion}`
       );
     }
+
+    memoPath = fs.existsSync(memoPath) && memoPath;
 
     // Parse and validate all field descriptors.
     let fields: FieldDescriptor[] = [];

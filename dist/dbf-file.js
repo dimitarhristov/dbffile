@@ -8,6 +8,7 @@ const file_version_1 = require("./file-version");
 const options_1 = require("./options");
 const utils_1 = require("./utils");
 const utils_2 = require("./utils");
+const fs = require("fs");
 /** Represents a DBF file. */
 class DBFFile {
     constructor() {
@@ -70,6 +71,7 @@ async function openDBF(path, options) {
         if (options.fileVersion && fileVersion !== options.fileVersion) {
             throw new Error(`File '${path}: expected version ${options.fileVersion} but found ${fileVersion}`);
         }
+        memoPath = fs.existsSync(memoPath) && memoPath;
         // Parse and validate all field descriptors.
         let fields = [];
         while (headerLength > 32 + fields.length * 32) {
