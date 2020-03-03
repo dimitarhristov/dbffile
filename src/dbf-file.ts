@@ -329,6 +329,7 @@ async function readRecordsFromDBF(
             case "T": // DateTime
               if (buffer[offset] === 0x20) {
                 value = null;
+                offset += 8;
                 break;
               }
               const julianDay = buffer.readInt32LE(offset);
